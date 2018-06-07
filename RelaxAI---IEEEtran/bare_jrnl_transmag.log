@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.6.6)  6 JUN 2018 22:17
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.6.6)  7 JUN 2018 20:35
 entering extended mode
-**E:/语义抽象/Paper_writing/RelaxAI---IEEEtran/bare_jrnl_transmag.tex
-(E:/语义抽象/Paper_writing/RelaxAI---IEEEtran/bare_jrnl_transmag.tex
+**E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/bare_jrnl_transmag.tex
+(E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/bare_jrnl_transmag.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
-(E:\语义抽象\Paper_writing\RelaxAI---IEEEtran\IEEEtran.cls
+(E:\Github-folder\jss\nasac\RelaxAI---IEEEtran\IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/
@@ -143,7 +143,7 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen126
 \Gin@req@width=\dimen127
 )
-(E:\语义抽象\Paper_writing\RelaxAI---IEEEtran\bare_jrnl_transmag.aux)
+(E:\Github-folder\jss\nasac\RelaxAI---IEEEtran\bare_jrnl_transmag.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 353.
 LaTeX Font Info:    ... okay on input line 353.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 353.
@@ -183,52 +183,50 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 429.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 429.
- <motivation_example.png, id=1, 356.0502pt x 364.7226pt>
+Missing character: There is no � in font ptmr7t!
+Missing character: There is no � in font ptmr7t!
+ [1{C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}
+
+
+]
+<motivation_example.png, id=9, 356.0502pt x 364.7226pt>
 File: motivation_example.png Graphic file (type png)
 
 <use motivation_example.png>
-Package pdftex.def Info: motivation_example.png used on input line 483.
+Package pdftex.def Info: motivation_example.png used on input line 491.
 (pdftex.def)             Requested size: 180.67499pt x 185.07666pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Missing character: There is no � in font ptmr7t!
 Missing character: There is no � in font ptmr7t!
 Missing character: There is no � in font ptmr7t!
 Missing character: There is no � in font ptmr7t!
-[1{C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}
-
-
- <E:/语义抽象/Paper_writing/RelaxAI---IEEEtran/motivation_example.png>]
+ [2 <E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/motivation_example.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 705.
+(Font)              <8> on input line 713.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 705.
- [2
+(Font)              <6> on input line 713.
+ [3
 
 ]
-(E:\语义抽象\Paper_writing\RelaxAI---IEEEtran\bare_jrnl_transmag.aux) ) 
+(E:\Github-folder\jss\nasac\RelaxAI---IEEEtran\bare_jrnl_transmag.aux) ) 
 Here is how much of TeX's memory you used:
  1980 strings out of 495354
- 31823 string characters out of 3183860
- 88637 words of memory out of 3000000
+ 31796 string characters out of 3183860
+ 91637 words of memory out of 3000000
  5171 multiletter control sequences out of 15000+200000
  45646 words of font info for 82 fonts, out of 3000000 for 9000
  17 hyphenation exceptions out of 8191
- 32i,11n,28p,930b,290s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/
-CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb
-><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX
-/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/
-utmbi8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTeX/fo
-nts/type1/urw/times/utmri8a.pfb>
-Output written on bare_jrnl_transmag.pdf (2 pages, 132671 bytes).
+ 32i,11n,28p,1766b,290s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/CTE
+X/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/urw/times/
+utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/CTEX/MiKTeX/fo
+nts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmri8a.pf
+b>
+Output written on bare_jrnl_transmag.pdf (3 pages, 90291 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
+ 32 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -66,6 +66,8 @@
 
 % *** MISC UTILITY PACKAGES ***
 %
+\usepackage{graphicx}
+
 %\usepackage{ifpdf}
 % Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
 % compilation based on whether the output is pdf or dvi.
@@ -356,7 +358,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Bare Demo of IEEEtran.cls for\\ IEEE \textsc{Transactions on Magnetics}}
+\title{Hierarchical analysis of loops with relaxed abstract transformers}
 
 
 
@@ -412,12 +414,13 @@ Corresponding author: M. Shell (email: http://www.michaelshell.org/contact.html)
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-循环是程序完成复杂功能必不可少的组成元素，循环分析是程序分析领域很难的problem，主要原因在于很难找到一个足够精确的循环不变式来描述循环的行为，尤其是当循环存在非线性不变式时情况会变得更加复杂。抽象解释为生成循环不变式提供了一个通用框架，但受限于常用的线性抽象域的表达能力以及加宽可能带来的巨大精度损失，分析非线性循环得到的线性不变式往往无法为程序分析提供有效的信息。为了提高线性抽象域分析非线性循环的精度，本文提出一种新的面向循环的层次化分析方法，本文首先提出了一种基于变量依赖关系的变量层次图，并基于变量层次图构建程序的精化抽象版本序列。然后，通过对只涉及较低层次的变量的抽象程序进行分析，得到较低层次的变量间的部分不变式。接下来，利用只涉及较低层次变量上的部分不变式，对涉及更高层次变量的精化抽象程序的迁移函数进行Relax，使得现有的基于加宽抽象解释技术能够得到更加精确的循环不变式。在此基础上，本文还提出了一些优化的分析策略来对Relaxing之后的程序进行分析，以得到更精确的分析结果。最后，基于上述技术途径，设计了一个基于抽象解释的程序分析框架，并实现了一个工具原型。本文在38常用的非线性循环上开展实验，初步实验结果表明，本文方法能够获得更高精度的不变式。
+Circulation is an indispensable component of the program's completion of complex functions. Circulation analysis is a difficult problem in the
+field of program analysis. The main reason is that it is difficult to find a sufficiently accurate loop invariant to describe the behavior of the loop, especially when the loop exists. The situation becomes more complicated when linear invariants are used.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-IEEE, IEEEtran, IEEE Transactions on Magnetics, journal, \LaTeX, magnetics, paper, template.
+Loop analysis, Abstract Interpretation, Non-linear invariant, Hierarchical analysis, Relax transformer, Formal Method
 \end{IEEEkeywords}}
 
 
@@ -471,25 +474,72 @@ IEEE, IEEEtran, IEEE Transactions on Magnetics, journal, \LaTeX, magnetics, pape
 %
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
-for IEEE \textsc{Transactions on Magnetics} journal papers produced under \LaTeX\ using
-IEEEtran.cls version 1.8b and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
+\IEEEPARstart{T}{he}static analysis technique based on Abstract Interpretation (AI) does not execute the program dynamically, but analyzes its source code statically, and obtains the semantics automatically, thereby verifying the correctness of the program or finding possible errors. Abstract interpretation uses the abstract semantics to approximate the concrete semantics of the program, so it can obtain an approximation of program’s reachable states at any program points in a limited time and space. This approximation may contain behaviors that do not exist in the original program, so it may generate false positives. Improving the accuracy to reduce the false alarms is one of the major challenges faced by AI in practical applications.
+The main precision loss of AI comes from the following two aspects: Firstly, the expressiveness of specified abstract domain limits the precision of AI, such as numerical abstract domain Intervel (x=[a,b]), Octagon (±x±y≤c), Polyhedron (\Sum_i a_i x_i<=c) that commonly used can only express a linear convex space, and cannot described for nonlinear or non-convex spaces accurately. Secondly, the widening is usually introduced to speed and ensure the convergence of the iterative loop analysis, which aggressively increases the abstracted feasible program states at the loop head, and leads to precision losing heavily. In particular, using a linear abstraction domain to analyze a program with non-linear loop invariants can easily widen the values of variables to infinite boundaries, thereby introducing a large number of false alarms of run-time errors.
 
-\hfill mds
+Figure 1 a motivating example
+Consider the motivating program in Fiagure 1(a), which computes the sum of all integers from -9 to 21 through a loop and stores the result in variable y. As a concrete execution of this program, the values of x and y at the program point 1 always satisfy the quadratic equation y = (x-9) * (x + 10)/2, where -10 <= x <= 20, that is the parabolic segment (L) in Figure 1 (b). From this quadratic relation, it is not difficult to conclude that the value of y always satisfies -45 <= y <= 165, so there is no integer overflow after executing the statement y = y + x at program point 2. However,  the analysis using standard AI with linear abstract domain (including interval, octagon or polyhedron abstract domain, etc.) and normal widening operator can only generate meaningless invariant about variable y at program point 1, that is ? belongs to [-oo,+oo], then the analysis concludes there is an integer overflow error at point 2. And this is obviously a false alarm. In order to eliminate these alarms from non-linear programs, many work designed specific non-linear abstract domains. However, such domains usually have high time and space complexity and are not universal for all the non-linear features of programs. And most of them can only deal with polynomial invariants with a use-provided degree. For example, the work in [][] can generate the most precise invariants of our motivating example with degree 2, but if we modify the statement Y = Y + X; to Y = Y + X * X * X ;, these work will not be able to express these polynomial invariants with higher degree. And the constraints of y during the analysis will be lost after widening, then still generate integer overflow false alarms.
 
-\hfill August 26, 2015
+We proposes a new hierarchical method for loop analysis. The main idea of our method is using calculated partial invariants (only involving partial program variables) of loop to relax the transfer functions of program, then we take another analysis on relaxed program with more variables but little instability factor during widening. As a result, we can obtain more accurate loop invariant of all program variables in limited iterations of analysis. Firstly, this paper proposes and constructs a variable hierarchy graph based on variable dependencies of loop, and then builds a sliced program sequence (SPS) based on the variable hierarchy graph. Then, we get loop invariants of lower-level variables (called partial invariants) by analyzing the sliced program only involving lower-variables. Next, we use these partial invariants to relax the transfer function of the successor program involving higher-variables from SPS, in order to reach a more accurate fix-point on relaxed program by static analysis based on AI with normal widening. Then, on this basis of transformer relaxing, we also proposes a fix-point solving technology called Formula Method on single variable assignment with interval coefficient to improving the analysis of programs with exponential loop. Finally, we introduce our framework combining hierarchical loop analysis and transformer relaxing, and implement a prototype tool. The preliminary experimental results show that our method can obtain more accurate invariants.
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+For our motivating example, our method can generate a linear invariants about x and y expressed by polyhedron abstract domain at the loop header {x<=20, -x<=10; -9x-y <=90; -21x+y<=210}.
+Geometrically, the state space represented by our invariants is shown in the gray triangle region in Figure 1(b), i.e. the hyper plane consisting of lines L'(-9x-y<=90), L'' (-21x+y<=210), and L''' (x<=20).From Figure 1(b), we can see that although the linear abstract domain polyhedron cannot accurately express the quadratic invariants of the original program (i.e. the geometric parabola), our method can use an linear polyhedron invariants to enclose the nonlinear invariants soundly. Come back to check whether the statement y=y+x; can cause an integer overflow, as we can get the range of x is [-9,21] and y is [-270,630] from our linear invariants above at program point 2, we can prove that there is no integer overflow after executing y=y+x;.At this point check the statement y=y+x again; if it causes an integer overflow, we can know from the linear constraint above that the range of x at program point 2 is [-9,21] and the range of y is [-270,630], so that we can prove The statement y = y + x; will not produce integer overflow, i.e. we have eliminated this false alarm of integer overflow at program point 2.
 
+Organization. §2 illustrates the main framework of our method and how it works on our motivating example. §3 presents hierarchal variable dependency graph (HVDG) of loop and program slicing by hierarchal variables. §4 presents the definition, soundness and some strategies of relaxing. §5 describes a fix-point solver based on formula method. §6 presents discussions on soundness and precision of our method. §7 presents our experiment and evaluation. §8 discusses related work. §9 gives conclusions as well as future work.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=2.5in]{motivation_example.png}
+% where an .eps filename suffix will be assumed under latex,
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Motivation Example}
+\label{fig:first}
+\end{figure}
+
+\section{Overview}
+In the actual program, we can easily find that there is a hierarchical dependency between the variables in the loop. For example, loop control variables (such as loop counter) often do not depend on other variables in the loop, besides relying on themselves or some input; many variables depend on loop control variables in one direction. If you use the abstract domain to analyze all the variables in the loop at the same time, it is very likely that there are too many unstable factors in the two iterations (for example, many variable values are changing). After widening, the precision loss is very large. Especially for programs such as Motivating example with non-linear behavior, if the linear abstraction domain is used to analyze all the variables at the same time, it is easy to make the analysis inaccurate due to widening.
+
+\section{Variable Layering and Cyclic Slicing Based on Variable Dependent Layered Graphs}
+Hierarchal Variable Dependency Graph（HVDG）
+\subsection{Variable Dependency}
+Definition of VD
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
+\subsection{Variable Dependency Graph}
+\subsubsection{Some Definitions}
+Hasse Diagram
+\subsubsection{Construct VDG}
+We will introduce how to construct the VDG.
+\subsection{Variable layering }
+How to layer variables based on Hasse Diagram.
+\subsection{Slicing based on variable Hierarchy }
+How to slice the loop by vh.
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
+\section{Relaxing transformers based on partial loop invariant}
+\subsection{Definition of Relax and its soundness}
+Definition of Relax
+Soundness of Relax
+\subsection{Relaxing Strategy}
+\subsubsection{ All variables relaxing strategy}
+\subsubsection{Templated relaxing strategy}
+(1)Linearization Relaxing of single assignments
+
+(2)Relational Relaxing of multiple assignments
+
+(3)Relaxing of single variable assignments
+
+\section{Computing Fix-point by Formula Method}
+\subsection{Formula Method of single variable assignments}
+\subsection{Loop counter calculation by Formula Method}
+\subsection{Fix-point solver combining Kleene iteration and Formula Method}
+
+\section{Discussion}
+Talk about the soundness and precision of our method.
+
+\section{Experiment and Evaluation}
+
+
 
 
 % An example of a floating figure using the graphicx package.
