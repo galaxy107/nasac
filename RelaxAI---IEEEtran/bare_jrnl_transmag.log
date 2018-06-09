@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.6.6)  7 JUN 2018 20:35
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2018.6.6)  9 JUN 2018 09:04
 entering extended mode
 **E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/bare_jrnl_transmag.tex
 (E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/bare_jrnl_transmag.tex
@@ -198,16 +198,18 @@ Package pdftex.def Info: motivation_example.png used on input line 491.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [2 <E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/motivation_example.png>]
+Missing character: There is no ¡ in font ptmr7t!
+Missing character: There is no ¯ in font ptmr7t!
 Missing character: There is no £ in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no £ in font ptmr7t!
 Missing character: There is no © in font ptmr7t!
- [2 <E:/Github-folder/jss/nasac/RelaxAI---IEEEtran/motivation_example.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 713.
+(Font)              <8> on input line 727.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 713.
- [3
+(Font)              <6> on input line 727.
+ [3] [4
 
 ]
 (E:\Github-folder\jss\nasac\RelaxAI---IEEEtran\bare_jrnl_transmag.aux) ) 
@@ -224,9 +226,9 @@ X/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/urw/times/
 utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/CTEX/MiKTeX/fo
 nts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmri8a.pf
 b>
-Output written on bare_jrnl_transmag.pdf (3 pages, 90291 bytes).
+Output written on bare_jrnl_transmag.pdf (4 pages, 94817 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
+ 35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
